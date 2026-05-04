@@ -155,7 +155,7 @@ function Home() {
             <img
               src={instructorPortrait}
               alt="Lena Faber instructing"
-              className="h-full w-full scale-120 object-cover object-center"
+              className="h-full w-full scale-[1.2] object-cover object-center"
               loading="lazy"
             />
             </div>
