@@ -5,7 +5,7 @@ import { useReveal } from "@/hooks/use-reveal";
 export function PageShell({ children }: { children: React.ReactNode }) {
   useReveal();
   return (
-    <div className="min-h-screen bg-background text-bone">
+    <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <main>{children}</main>
       <Footer />
@@ -18,34 +18,29 @@ export function PageHero({
   title,
   intro,
   image,
-  align = "left",
 }: {
   kicker: string;
   title: string;
   intro?: string;
   image: string;
-  align?: "left" | "center";
 }) {
   return (
-    <section className="relative h-[80vh] min-h-[560px] w-full overflow-hidden">
-      <img
-        src={image}
-        alt={title}
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="eager"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/30 to-background" />
-      <div
-        className={`relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-20 md:px-10 ${
-          align === "center" ? "items-center text-center" : ""
-        }`}
-      >
-        <p className="kicker text-crimson">{kicker}</p>
-        <h1 className="display-lg mt-4 max-w-4xl text-balance text-bone">{title}</h1>
-        {intro && (
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-bone/80">{intro}</p>
-        )}
+    <section className="relative pt-28 md:pt-32">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+        <div className="grid items-end gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="kicker text-primary">{kicker}</p>
+            <h1 className="display-lg mt-4 text-foreground">{title}</h1>
+            {intro && <p className="mt-6 max-w-xl text-lg text-foreground/75">{intro}</p>}
+          </div>
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden bg-foreground">
+              <img src={image} alt={title} className="h-full w-full object-cover" loading="eager" />
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="mt-16 h-1 w-full bg-primary" />
     </section>
   );
 }

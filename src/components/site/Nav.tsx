@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { to: "/story", label: "Story" },
-  { to: "/adventures", label: "Adventures" },
-  { to: "/athlete", label: "Athlete" },
-  { to: "/racing", label: "Racing" },
-  { to: "/books", label: "Books" },
-  { to: "/press", label: "Press" },
-  { to: "/contact", label: "Contact" },
-] as const;
+  { to: "/story" as const, label: "Story" },
+  { to: "/adventures" as const, label: "Adventures" },
+  { to: "/athlete" as const, label: "Athlete" },
+  { to: "/racing" as const, label: "Racing" },
+  { to: "/books" as const, label: "Books" },
+  { to: "/press" as const, label: "Press" },
+  { to: "/contact" as const, label: "Contact" },
+];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,23 +25,23 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/80 backdrop-blur-md border-b border-border" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/90 backdrop-blur-md border-b-2 border-foreground" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
-        <Link to="/" className="flex items-baseline gap-2 text-bone">
-          <span className="font-display text-2xl tracking-tight">Lena Faber</span>
-          <span className="kicker text-crimson">/ Brave</span>
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10">
+        <Link to="/" className="flex items-baseline gap-2">
+          <span className="font-display text-2xl uppercase tracking-tight text-foreground">Lena Faber</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-primary">/ Brave</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {LINKS.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="kicker text-bone/70 transition-colors hover:text-crimson"
-              activeProps={{ className: "kicker text-crimson" }}
+              className="text-xs font-bold uppercase tracking-widest text-foreground/70 transition-colors hover:text-primary"
+              activeProps={{ className: "text-xs font-bold uppercase tracking-widest text-primary" }}
             >
               {l.label}
             </Link>
@@ -50,7 +50,7 @@ export function Nav() {
 
         <button
           aria-label="Toggle menu"
-          className="md:hidden text-bone"
+          className="text-foreground md:hidden"
           onClick={() => setOpen((o) => !o)}
         >
           {open ? <X /> : <Menu />}
@@ -58,14 +58,14 @@ export function Nav() {
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
+        <nav className="border-t-2 border-foreground bg-background md:hidden">
           <div className="flex flex-col px-6 py-6">
             {LINKS.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="kicker py-3 text-bone/80 hover:text-crimson"
+                className="py-3 text-sm font-bold uppercase tracking-widest text-foreground hover:text-primary"
               >
                 {l.label}
               </Link>
