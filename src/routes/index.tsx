@@ -4,7 +4,6 @@ import { PageShell } from "@/components/site/PageShell";
 import { PressMarquee } from "@/components/site/PressMarquee";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Ticker } from "@/components/site/Ticker";
-import instructorPortrait from "@/assets/lena-faber-instructor-portrait.jpg";
 import { IMG } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
@@ -150,15 +149,13 @@ function Home() {
               She doesn’t look back. <span className="text-primary">She runs forward.</span>
             </h2>
           </div>
-          <div className="relative flex items-center justify-center overflow-hidden bg-foreground md:col-span-1">
-            <div className="relative h-full w-full overflow-hidden bg-foreground">
+          <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-foreground p-6 md:col-span-1 md:min-h-0 md:p-8">
             <img
-              src={instructorPortrait}
+              src={IMG.instructor}
               alt="Lena Faber instructing"
-              className="h-full w-full scale-[1.2] object-cover object-center"
+              className="block max-h-full max-w-full scale-[1.2] object-contain"
               loading="lazy"
             />
-            </div>
           </div>
         </div>
       </section>
