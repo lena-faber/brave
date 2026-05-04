@@ -54,79 +54,76 @@ const TICKER_WORDS = ["Brave", "Wild", "Curious", "Just Go", "Just Now", "Just B
 function Home() {
   return (
     <PageShell>
-      {/* HERO — split, modern, action */}
-      <section className="relative pt-28 md:pt-36">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-            {/* Headline column */}
-            <div className="lg:col-span-7 relative">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary" />
-                <p className="kicker text-foreground/70">Live · On The Road · 2026</p>
-              </div>
+      {/* HERO — full bleed image, overlaid action text */}
+      <section className="relative h-screen min-h-[700px] w-full overflow-hidden">
+        <img
+          src={IMG.brave}
+          alt="Lena Faber — Brave"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          loading="eager"
+        />
+        {/* readability gradient — bottom-left for text */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-foreground/85 via-foreground/40 to-transparent" />
 
-              <h1 className="display-xl mt-6 text-foreground">
-                BR<span className="text-primary">A</span>VE.
-              </h1>
+        {/* floating action tags */}
+        <div className="absolute left-6 top-28 z-10 inline-flex items-center gap-2 bg-background px-3 py-2 text-xs font-bold uppercase tracking-widest text-foreground md:left-10 md:top-32">
+          <Zap className="h-3 w-3 text-primary" /> Now Filming
+        </div>
+        <div className="absolute right-6 top-28 z-10 bg-primary px-3 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground md:right-10 md:top-32">
+          Brave / 2026
+        </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-display text-2xl uppercase md:text-4xl">
-                <span className="bg-foreground px-3 py-1 text-background">Adventurer</span>
-                <span>·</span>
-                <span className="bg-primary px-3 py-1 text-primary-foreground">Athlete</span>
-                <span>·</span>
-                <span className="bg-accent px-3 py-1 text-accent-foreground">Racer</span>
-                <span>·</span>
-                <span className="underline decoration-primary decoration-4 underline-offset-4">Author</span>
-              </div>
+        {/* live indicator */}
+        <div className="absolute right-6 bottom-32 z-10 flex items-center gap-2 md:right-10 md:bottom-36">
+          <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary" />
+          <p className="text-xs font-bold uppercase tracking-widest text-background">Live · On The Road · 2026</p>
+        </div>
 
-              <p className="mt-8 max-w-xl text-lg text-foreground/75">
-                Lena Faber. Four years moving. Thirteen pounds on her back.
-                Thirty countries down. Zero permission asked.
-                This is the live feed of a life in motion.
-              </p>
+        {/* main content */}
+        <div className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-28 md:px-10 md:pb-36">
+          <h1 className="display-xl text-background drop-shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
+            BR<span className="text-primary">A</span>VE.
+          </h1>
 
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/adventures"
-                  className="group inline-flex items-center gap-3 bg-foreground px-6 py-4 text-sm font-bold uppercase tracking-widest text-background transition hover:bg-primary hover:text-primary-foreground"
-                >
-                  Watch the Action
-                  <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-                <Link
-                  to="/story"
-                  className="inline-flex items-center gap-3 border-2 border-foreground px-6 py-4 text-sm font-bold uppercase tracking-widest text-foreground transition hover:bg-foreground hover:text-background"
-                >
-                  Why She Started
-                </Link>
-              </div>
-            </div>
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-display text-xl uppercase md:text-3xl">
+            <span className="bg-background px-3 py-1 text-foreground">Adventurer</span>
+            <span className="bg-primary px-3 py-1 text-primary-foreground">Athlete</span>
+            <span className="bg-accent px-3 py-1 text-accent-foreground">Racer</span>
+            <span className="bg-background px-3 py-1 text-foreground">Author</span>
+          </div>
 
-            {/* Hero image column */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] overflow-hidden bg-foreground">
-                <img src={IMG.brave} alt="Lena Faber" className="h-full w-full object-cover" loading="eager" />
-                {/* floating tag */}
-                <div className="absolute left-4 top-4 inline-flex items-center gap-2 bg-background px-3 py-2 text-xs font-bold uppercase tracking-widest text-foreground">
-                  <Zap className="h-3 w-3 text-primary" />  Now Filming
-                </div>
-                <div className="absolute bottom-4 right-4 bg-primary px-3 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground">
-                  Brave / 2026
-                </div>
-              </div>
-              {/* small inset second image */}
-              <div className="absolute -bottom-10 -left-6 hidden h-40 w-32 overflow-hidden border-4 border-background shadow-2xl lg:block">
-                <img src={IMG.trailRun} alt="" className="h-full w-full object-cover" loading="eager" />
-              </div>
-            </div>
+          <p className="mt-8 max-w-xl text-lg text-background/95 md:text-xl">
+            Lena Faber. Four years moving. Thirteen pounds on her back.
+            Thirty countries down. Zero permission asked.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              to="/adventures"
+              className="group inline-flex items-center gap-3 bg-primary px-6 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition hover:bg-background hover:text-foreground"
+            >
+              Watch the Action
+              <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </Link>
+            <Link
+              to="/story"
+              className="inline-flex items-center gap-3 border-2 border-background px-6 py-4 text-sm font-bold uppercase tracking-widest text-background transition hover:bg-background hover:text-foreground"
+            >
+              Why She Started
+            </Link>
           </div>
         </div>
 
-        {/* Ticker */}
-        <div className="mt-20 border-y-2 border-foreground bg-primary py-4 text-primary-foreground">
-          <Ticker items={TICKER_WORDS} />
+        {/* scroll cue */}
+        <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-xs font-bold uppercase tracking-widest text-background/80">
+          ↓ Scroll
         </div>
       </section>
+
+      {/* Ticker */}
+      <div className="border-y-2 border-foreground bg-primary py-4 text-primary-foreground">
+        <Ticker items={TICKER_WORDS} />
+      </div>
 
       {/* STATS */}
       <section className="bg-background">
