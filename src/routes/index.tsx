@@ -69,7 +69,7 @@ function Home() {
         <div className="absolute left-6 top-28 z-10 inline-flex items-center gap-2 bg-background px-3 py-2 text-xs font-bold uppercase tracking-widest text-foreground md:left-10 md:top-32">
           <Zap className="h-3 w-3 text-primary" /> Now Filming
         </div>
-        <div className="absolute right-6 top-28 z-10 bg-primary px-3 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground md:right-10 md:top-32">
+        <div className="absolute right-6 top-28 z-10 bg-primary px-3 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground md:left-10 md:right-auto md:top-44">
           Brave / 2026
         </div>
 
@@ -142,11 +142,21 @@ function Home() {
 
       {/* MANIFESTO + IMAGE COLLAGE */}
       <section className="border-t-2 border-foreground bg-foreground text-background">
-        <div className="mx-auto max-w-[1600px] px-6 py-24 md:px-10 md:py-32">
-          <p className="kicker text-primary">No archive. No memories. Just the next move.</p>
-          <h2 className="display-lg mt-6 max-w-5xl text-background">
-            She doesn’t look back. <span className="text-primary">She runs forward.</span>
-          </h2>
+        <div className="mx-auto grid max-w-[1600px] grid-cols-1 items-stretch md:grid-cols-2">
+          <div className="px-6 py-24 md:px-10 md:py-32">
+            <p className="kicker text-primary">No archive. No memories. Just the next move.</p>
+            <h2 className="display-lg mt-6 text-background">
+              She doesn’t look back. <span className="text-primary">She runs forward.</span>
+            </h2>
+          </div>
+          <div className="relative min-h-[400px] overflow-hidden md:min-h-full">
+            <img
+              src={IMG.instructor}
+              alt="Lena Faber instructing"
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
