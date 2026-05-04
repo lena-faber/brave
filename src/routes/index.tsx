@@ -149,11 +149,11 @@ function Home() {
               She doesn’t look back. <span className="text-primary">She runs forward.</span>
             </h2>
           </div>
-          <div className="relative flex items-center justify-center p-6 md:col-span-1 md:p-10">
+          <div className="relative flex items-center justify-center overflow-hidden bg-foreground p-6 md:col-span-1 md:p-10">
             <img
               src={IMG.instructor}
               alt="Lena Faber instructing"
-              className="h-auto w-full max-w-sm object-contain md:scale-[1.2] md:origin-center"
+              className="h-auto w-full max-w-sm object-contain"
               loading="lazy"
             />
           </div>
