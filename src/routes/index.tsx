@@ -142,11 +142,21 @@ function Home() {
 
       {/* MANIFESTO + IMAGE COLLAGE */}
       <section className="border-t-2 border-foreground bg-foreground text-background">
-        <div className="mx-auto max-w-[1600px] px-6 py-24 md:px-10 md:py-32">
-          <p className="kicker text-primary">No archive. No memories. Just the next move.</p>
-          <h2 className="display-lg mt-6 max-w-5xl text-background">
-            She doesn’t look back. <span className="text-primary">She runs forward.</span>
-          </h2>
+        <div className="mx-auto grid max-w-[1600px] grid-cols-1 items-stretch md:grid-cols-2">
+          <div className="px-6 py-24 md:px-10 md:py-32">
+            <p className="kicker text-primary">No archive. No memories. Just the next move.</p>
+            <h2 className="display-lg mt-6 text-background">
+              She doesn’t look back. <span className="text-primary">She runs forward.</span>
+            </h2>
+          </div>
+          <div className="relative min-h-[400px] overflow-hidden md:min-h-full">
+            <img
+              src={IMG.instructor}
+              alt="Lena Faber instructing"
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
