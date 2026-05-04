@@ -33,7 +33,7 @@
   --color-crimson: var(--crimson);
   --color-sand: var(--sand);
   --color-ink: var(--ink);
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Anton", "Archivo Black", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
