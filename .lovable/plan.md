@@ -1,17 +1,14 @@
-Plan:
+## Fix Cloudflare build: regenerate package-lock.json
 
-1. Fix the Cloudflare build failure
-   - Remove the binary `bun.lockb` from the repo so Cloudflare stops choosing Bun automatically.
-   - Keep `package-lock.json` so Cloudflare uses npm instead, avoiding the Bun version mismatch shown in the screenshot: `failed to parse lockfile: 'bun.lockb'`.
-   - Do not change app functionality.
+`package-lock.json` is out of sync with `package.json` (missing `@lovable.dev/vite-plugin-dev-server-bridge`, `@lovable.dev/vite-plugin-hmr-gate`; stale versions of `@lovable.dev/vite-tanstack-config`, `lovable-tagger`, `is-core-module`, `hasown`). Cloudflare runs `npm ci`, which refuses to install when the lockfile drifts.
 
-2. Tell you the Cloudflare settings to use after the repo updates
-   - Build command: `npm run build`
-   - Install command: `npm ci` if Cloudflare asks; otherwise leave default after `bun.lockb` is removed.
-   - Root directory: project root.
+### Steps
 
-3. Clarify the hero image
-   - The homepage hero image is currently `lena-faber-brave.jpg`.
-   - It is referenced in `src/lib/images.ts` as `IMG.brave`.
-   - The homepage uses it in `src/routes/index.tsx` inside the first full-screen hero section.
-   - The file is not stored locally in this project; it loads from the GitHub image URL base `https://raw.githubusercontent.com/lena-faber/brave/main/assets/images`.
+1. Run `npm install` in the project to refresh `package-lock.json` against the current `package.json`.
+2. Verify the previously-missing/stale packages now appear at the expected versions in the lockfile.
+
+No application source files are changed — only `package-lock.json`.
+
+### After implementation
+
+Push to GitHub (auto-syncs from Lovable) and retry the Cloudflare deployment. `npm ci` will then succeed.
