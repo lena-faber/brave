@@ -1,46 +1,17 @@
-# Deploy to Cloudflare Workers
+Plan:
 
-Good news: this project is **already configured for Cloudflare Workers** (`wrangler.jsonc` + `@lovable.dev/vite-tanstack-config` with the Cloudflare build target). No code changes needed — just deploy.
+1. Fix the Cloudflare build failure
+   - Remove the binary `bun.lockb` from the repo so Cloudflare stops choosing Bun automatically.
+   - Keep `package-lock.json` so Cloudflare uses npm instead, avoiding the Bun version mismatch shown in the screenshot: `failed to parse lockfile: 'bun.lockb'`.
+   - Do not change app functionality.
 
-## Option A — Publish via Lovable (easiest, recommended)
+2. Tell you the Cloudflare settings to use after the repo updates
+   - Build command: `npm run build`
+   - Install command: `npm ci` if Cloudflare asks; otherwise leave default after `bun.lockb` is removed.
+   - Root directory: project root.
 
-Lovable's "Publish" button already deploys to Cloudflare under the hood.
-
-1. Click **Publish** (top-right of editor, or the `…` menu → Publish on mobile)
-2. You get a live URL at `your-project.lovable.app`
-3. Add a custom domain in Project Settings → Domains
-
-Done. No Cloudflare account needed.
-
-## Option B — Deploy to your own Cloudflare account
-
-If you want the Worker running under *your* Cloudflare account:
-
-1. **Get the code on your machine**
-   - Connect GitHub: chat `+` menu → GitHub → Connect project, then `git clone` the repo
-   - Or: Code Editor → Download codebase (paid workspace)
-
-2. **Install Wrangler & login**
-   ```bash
-   bun install
-   bunx wrangler login
-   ```
-
-3. **Deploy**
-   ```bash
-   bun run build
-   bunx wrangler deploy
-   ```
-   This uses the existing `wrangler.jsonc` and ships to `tanstack-start-app.<your-subdomain>.workers.dev`.
-
-4. **Custom domain** — add a route in the Cloudflare dashboard under Workers & Pages → your worker → Settings → Domains & Routes.
-
-5. **Env vars / secrets** (if you add any later):
-   ```bash
-   bunx wrangler secret put SECRET_NAME
-   ```
-
-## Which do you want?
-
-- **A (Lovable Publish)** → I'll just point you at the Publish button, nothing to build.
-- **B (Own Cloudflare account)** → I can verify the build works and confirm `wrangler.jsonc` is deploy-ready before you run the commands.
+3. Clarify the hero image
+   - The homepage hero image is currently `lena-faber-brave.jpg`.
+   - It is referenced in `src/lib/images.ts` as `IMG.brave`.
+   - The homepage uses it in `src/routes/index.tsx` inside the first full-screen hero section.
+   - The file is not stored locally in this project; it loads from the GitHub image URL base `https://raw.githubusercontent.com/lena-faber/brave/main/assets/images`.
